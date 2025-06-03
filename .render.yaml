@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: flask-reservation-api
+    env: python
+    buildCommand: ""
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: flask-reservation-db
+          property: connectionString
+
+databases:
+  - name: flask-reservation-db
+    databaseName: reservation_db
+    user: mama_care_user
