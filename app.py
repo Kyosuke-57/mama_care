@@ -4,12 +4,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base, Reservation
 from datetime import datetime
+import os
 
-# PostgreSQL接続設定
-DATABASE_URL = "postgresql://mama_care_user:hukasigi7@localhost/reservation_db"
 
 app = Flask(__name__)
 CORS(app)
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL") or "postgresql://mama_care_user:hukasigi7@localhost/mamacare_db"
+DATABASE_URL = app.config["SQLALCHEMY_DATABASE_URI"]
 
 # SQLAlchemyセットアップ
 engine = create_engine(DATABASE_URL, echo=True)
