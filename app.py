@@ -17,6 +17,12 @@ engine = create_engine(DATABASE_URL, echo=True)
 Base.metadata.create_all(engine)  # テーブル作成
 Session = sessionmaker(bind=engine)
 
+
+@app.route('/')
+def index():
+    return 'Flask API is running.'
+
+
 @app.route('/api/reserve', methods=['POST'])
 def reserve():
     data = request.get_json()
