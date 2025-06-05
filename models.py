@@ -1,12 +1,13 @@
-from sqlalchemy import Column, Integer, String, Date
-from sqlalchemy.ext.declarative import declarative_base
+from flask_sqlalchemy import SQLAlchemy
 
-Base = declarative_base()
+db = SQLAlchemy()
 
-class Reservation(Base):
-    __tablename__ = 'reservations'
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String(100), nullable=False)
-    date = Column(Date, nullable=False)
-    message = Column(String(500), nullable=True)
+class Reservation(db.Model):
+    __tablename__ = 'reservations'  # 明示的にテーブル名を指定してもOK
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    city = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.String(100), nullable=False)
+    menu = db.Column(db.Text, nullable=False)
+    datetime = db.Column(db.String(50), nullable=False)
