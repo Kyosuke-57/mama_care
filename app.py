@@ -25,12 +25,6 @@ def index():
     return 'Flask API is running.'
 
 
-
-@app.route('/')
-def index():
-    return 'Flask API is running.'
-
-
 @app.route('/api/reserve', methods=['POST'])
 def reserve():
     data = request.get_json()
